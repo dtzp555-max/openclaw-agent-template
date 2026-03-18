@@ -1,0 +1,7 @@
+{
+  "name": "openclaw-agent-template",
+  "version": "1.0.0",
+  "description": "Starter kit for creating a new OpenClaw agent in 5 minutes",
+  "type": "template",
+  "author": "dtzp555-max"
+}
