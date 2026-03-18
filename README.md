@@ -1,49 +1,48 @@
-# OpenClaw Agent Template
+# openclaw-agent-template
 
-A starter kit for creating a new OpenClaw agent in 5 minutes.
+A minimal, opinionated starter kit for creating OpenClaw agents — drop it into any workspace and your agent has identity, memory, and operating rules from day one.
 
-## What's This?
-
-When you set up OpenClaw, you need a workspace with a bunch of files that define your agent's identity, memory, and behavior. This template gives you a clean starting point.
+---
 
 ## Quick Start
 
 ```bash
-# 1. Clone this repo
-git clone https://github.com/dtzp555-max/openclaw-agent-template my-agent
+# 1. Clone this template
+git clone https://github.com/dtzp555-max/openclaw-agent-template.git my-agent
 cd my-agent
 
-# 2. Copy files to your agent workspace
-cp -r . ~/.openclaw/workspaces/my-agent/
+# 2. Copy the files into your workspace's agent config directory
+cp -r . /path/to/your/workspace/.openclaw/agent/
 
-# 3. Edit the placeholder files
-#    - IDENTITY.md  → your agent's name, vibe, emoji
-#    - USER.md      → info about the person the agent helps
-#    - SOUL.md      → behavioral guidelines (customize or leave as-is)
-
-# 4. Register the agent in openclaw.json and reload gateway
-openclaw gateway reload
+# 3. Reload your OpenClaw gateway to pick up the new config
+openclaw reload   # or restart your Claude Code session
 ```
+
+Then open `IDENTITY.md` and replace the `[PLACEHOLDERS]` with your agent's actual name, emoji, and vibe.
+
+---
 
 ## Files
 
 | File | Purpose |
-|---|---|
-| `SOUL.md` | Agent's behavioral DNA — persona, tone, continuity rules |
-| `IDENTITY.md` | Name, creature type, vibe, emoji |
-| `USER.md` | Info about the human the agent is helping |
-| `AGENTS.md` | Workspace rules (session startup, memory, safety) |
-| `MEMORY.md` | Long-term curated memory (persists across sessions) |
-| `TOOLS.md` | Notes on local tools and setup specifics |
-| `memory/CURRENT_STATE.md` | Short-term task state (In Flight / Blocked / Next) |
+|------|---------|
+| `SOUL.md` | Core behavior contract — message prefix rules, principles, continuity recovery |
+| `IDENTITY.md` | Who the agent is — name, emoji, creature, vibe, specializations |
+| `USER.md` | Who the agent serves — working style, expertise, preferences |
+| `AGENTS.md` | Workspace rules — session startup, memory policy, safety guardrails |
+| `TOOLS.md` | Available tools and usage guidelines |
+| `MEMORY.md` | Long-term memory — decisions, context, learnings across sessions |
+| `memory/CURRENT_STATE.md` | Short-term state — what's in flight, blocked, or next |
+
+---
 
 ## FAQ
 
-**How is this different from just creating files manually?**
-It's not — this just saves you 20 minutes of copy-pasting from docs.
+**Q: Do I need all these files?**
+Start with `SOUL.md`, `IDENTITY.md`, and `memory/CURRENT_STATE.md` — those three give you identity and continuity. Add the rest as your needs grow.
 
-**Do I need all these files?**
-`SOUL.md` is the most important. The others are optional but help the agent stay focused.
+**Q: How does the agent pick up changes to these files?**
+The agent reads them at session start. Edit a file and start a new session (or ask the agent to re-read it) for changes to take effect.
 
-**How do I add a Telegram bot?**
-Get a bot token from [@BotFather](https://t.me/BotFather), then add it to your `openclaw.json` under `accounts`.
+**Q: Can I use this with a non-OpenClaw Claude Code setup?**
+Yes. The files are plain markdown. Point your `CLAUDE.md` at them with `@SOUL.md`, `@IDENTITY.md`, etc., and they work as regular context files.
